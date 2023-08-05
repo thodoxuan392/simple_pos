@@ -28,6 +28,7 @@ uint16_t UART_receive_data(UART_id_t id);
 void UART_clear_buffer(UART_id_t id);
 
 // For UART stream read
+void UART_send_byte(UART_id_t id, uint8_t data);
 int UART_stream_read(UART_id_t id);
 
 #endif /* INC_HAL_UART_H_ */

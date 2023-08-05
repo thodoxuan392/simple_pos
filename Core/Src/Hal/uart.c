@@ -121,6 +121,11 @@ void UART_clear_buffer(UART_id_t id){
 	utils_buffer_drop_all(uart_table[id].buffer);
 }
 
+void UART_send_byte(UART_id_t id, uint8_t data){
+	uint8_t data_p = data;
+	HAL_UART_Transmit(uart_table[id].huart_p, &data_p, 1, 0xFFFF);
+}
+
 int UART_stream_read(UART_id_t id){
 	if(!UART_receive_available(id)){
 		return -1;
