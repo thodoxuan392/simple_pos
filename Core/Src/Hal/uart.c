@@ -121,6 +121,14 @@ void UART_clear_buffer(UART_id_t id){
 	utils_buffer_drop_all(uart_table[id].buffer);
 }
 
+int UART_stream_read(UART_id_t id){
+	if(!UART_receive_available(id)){
+		return -1;
+	}
+	uint8_t data = UART_receive_data(id);
+	return data;
+}
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef * huart){
 	if(huart->Instance == uart_table[UART_1].huart_p->Instance){
 		utils_buffer_push(uart_table[UART_1].buffer, &uart_table[UART_1].temp_data);

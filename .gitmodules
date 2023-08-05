@@ -7,3 +7,6 @@
 [submodule "Core/Lib/jsmn"]
 	path = Core/Lib/jsmn
 	url = git@github.com:thodoxuan392/jsmn.git
+[submodule "Core/Lib/kp347-printer"]
+	path = Core/Lib/kp347-printer
+	url = git@github.com:thodoxuan392/kp347-printer.git

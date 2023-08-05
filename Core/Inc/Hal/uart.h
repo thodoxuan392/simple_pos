@@ -27,5 +27,7 @@ bool UART_receive_available(UART_id_t id);
 uint16_t UART_receive_data(UART_id_t id);
 void UART_clear_buffer(UART_id_t id);
 
+// For UART stream read
+int UART_stream_read(UART_id_t id);
 
 #endif /* INC_HAL_UART_H_ */

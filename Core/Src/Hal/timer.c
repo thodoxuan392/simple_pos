@@ -16,6 +16,7 @@
 
 static TIMER_fn fn_table[TIMER_FN_MAX_SIZE];
 static size_t fn_table_len = 0;
+static uint32_t tick_us = 0;
 
 TIM_HandleTypeDef htim3 = {
 	.Instance = TIM3,
@@ -54,6 +55,10 @@ bool TIMER_init(){
 	return true;
 }
 
+uint32_t TIMER_get_tick_us(){
+	return tick_us + __HAL_TIM_GET_COUNTER(&htim3);
+}
+
 bool TIMER_attach_intr_1ms(void (*fn)(void)){
 	if(fn_table_len >= TIMER_FN_MAX_SIZE){
 		return false;
@@ -63,6 +68,7 @@ bool TIMER_attach_intr_1ms(void (*fn)(void)){
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef * htim){
+	tick_us += 1000;
 	if(htim->Instance == htim3.Instance){
 		for (int fn_idx = 0; fn_idx < fn_table_len; ++fn_idx) {
 			fn_table[fn_idx]();

@@ -14,6 +14,7 @@
 typedef void (*TIMER_fn)(void);
 
 bool TIMER_init();
+uint32_t TIMER_get_tick_us();
 bool TIMER_attach_intr_1ms(void (*fn)(void));
 
 
